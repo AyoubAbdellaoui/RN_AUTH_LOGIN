@@ -5,13 +5,11 @@ import {
     KeyboardAvoidingView,
     TouchableOpacity,
     AsyncStorage,
-    Image,
     TextInput,
     StyleSheet,
     Text,
     View
 } from "react-native";
-// import { ScrollView } from "react-native-gesture-handler";
 
 export default class Login extends Component {
     constructor() {

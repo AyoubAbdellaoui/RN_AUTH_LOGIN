@@ -9,9 +9,6 @@ import {
 
 import Login from "./app/Login";
 import Contact from "./app/Contact";
-// import Boiler from "./app/Boiler";
-// import ForgetPassword from "./app/components/ForgetPassword";
-// import Register from "./app/components/Register";
 
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
