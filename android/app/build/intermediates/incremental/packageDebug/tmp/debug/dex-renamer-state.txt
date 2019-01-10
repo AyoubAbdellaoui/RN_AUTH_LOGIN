@@ -1,4 +1,0 @@
-#Wed Jan 09 23:52:06 CET 2019
-base.0=/Users/mac/Desktop/work/test_SG/ReactNativeLoginAuthenticationn/android/app/build/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex
