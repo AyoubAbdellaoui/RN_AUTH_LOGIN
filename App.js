@@ -3,14 +3,19 @@ import {
   Platform,
   StyleSheet,
   Text,
+  AsyncStorage,
+  ActivityIndicator,
   View,
   StatusBar
 } from 'react-native';
-
+import { createSwitchNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import Login from "./app/Login";
 import Contact from "./app/Contact";
+import AuthLoading from "./app/AuthLoadingScreen"
 
-import { createAppContainer, createStackNavigator } from "react-navigation";
+
+// const AppStack = createStackNavigator({ Contact: Contact });
+// const AuthStack = createStackNavigator({ Login: Login });
 
 
 class App extends Component {
@@ -32,6 +37,12 @@ class App extends Component {
 }
 
 const AppNavigator = createStackNavigator({
+  AuthLoading: {
+    screen: AuthLoading,
+    navigationOptions: {
+      title: "AuthLoading"
+    }
+  },
   Login: {
     screen: Login,
     navigationOptions: {
@@ -44,13 +55,18 @@ const AppNavigator = createStackNavigator({
       title: "Contact"
     }
   }
-},
-  {
-    initialRouteName: 'Login',
-  }
-);
+});
 
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading: AuthLoading,
+    Contact: Contact,
+    Login: Login,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  }
+));
 
 export default App;
 

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import {
     AppRegistry,
-    ScrollView,
-    KeyboardAvoidingView,
     TouchableOpacity,
     AsyncStorage,
     TextInput,
@@ -16,7 +14,8 @@ export default class Login extends Component {
         super();
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            auth_token: ""
         };
     }
     static navigationOptions = {
@@ -26,15 +25,13 @@ export default class Login extends Component {
         },
         header: null
     };
-    async onLoginPress() {
-        const { username, password } = this.state;
-        console.log(username);
-        console.log(password);
-        await AsyncStorage.setItem("username", username);
-        await AsyncStorage.setItem("password", password);
-        console.log(this.props.navigation)
-        this.props.navigation.navigate("Contact", { identifiant: this.state.username });
+
+
+    _signInAsync = async () => {
+        let token = await AsyncStorage.setItem('userToken', 'abc');
+        this.props.navigation.navigate('Contact', { identifiant: this.state.username });
     }
+
     render() {
         return (
             <View
@@ -66,8 +63,9 @@ export default class Login extends Component {
                     />
                 </View>
                 <TouchableOpacity
-                    style={styles.buttonContainer}
-                    onPress={() => { this.onLoginPress() }}
+                    style={[styles.buttonContainer, !(this.state.username.trim() !== "" && this.state.password === "password") ? { opacity: 0.6 } : null]}
+                    disabled={!(this.state.username.trim() !== "" && this.state.password === "password")}
+                    onPress={this._signInAsync}
                 >
                     <Text style={styles.buttonText}>SE CONNECTER</Text>
                 </TouchableOpacity>
